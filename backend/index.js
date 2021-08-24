@@ -1,0 +1,1 @@
+console.log('Bloag App Backend Server');
