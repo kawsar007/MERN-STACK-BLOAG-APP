@@ -1,6 +1,6 @@
 import './App.css';
+import Settings from './components/settings/Settings';
 import Topbar from './components/topbar/Topbar';
-import WritePost from './components/writePost/WritePost';
 
 function App() {
   return (
@@ -8,8 +8,8 @@ function App() {
       <Topbar/>
       {/* <Home/> */}
       {/* <Single/> */}
-      <WritePost/>
-      
+      {/* <WritePost/> */}
+      <Settings/>
     </div>
   );
 }
