@@ -1,13 +1,14 @@
-import Single from '../src/Layout/posts/single/Single';
 import './App.css';
 import Topbar from './components/topbar/Topbar';
+import WritePost from './components/writePost/WritePost';
 
 function App() {
   return (
     <div className="App">
       <Topbar/>
       {/* <Home/> */}
-      <Single/>
+      {/* <Single/> */}
+      <WritePost/>
       
     </div>
   );
