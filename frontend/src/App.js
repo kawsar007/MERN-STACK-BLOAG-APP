@@ -1,5 +1,5 @@
 import './App.css';
-import Settings from './components/settings/Settings';
+import Login from './components/login/Login';
 import Topbar from './components/topbar/Topbar';
 
 function App() {
@@ -9,7 +9,8 @@ function App() {
       {/* <Home/> */}
       {/* <Single/> */}
       {/* <WritePost/> */}
-      <Settings/>
+      {/* <Settings/> */}
+      <Login/>
     </div>
   );
 }
