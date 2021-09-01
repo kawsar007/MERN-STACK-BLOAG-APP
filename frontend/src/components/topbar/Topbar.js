@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Topbar.css';
 
 function Topbar() {
+    const user = false;
     return (
         <div className="topbar">
             <dic className="social_icons">
@@ -12,17 +14,22 @@ function Topbar() {
             </dic>
             <div className="nav_items">
                 <ul className="top_list">
-                    <li className="top_list_item">Home</li>
-                    <li className="top_list_item">About</li>
-                    <li className="top_list_item">Contact</li>
-                    <li className="top_list_item">Write</li>
-                    <li className="top_list_item">Logout</li>
+                    <li className="top_list_item"><Link className="link" to="/">Home</Link></li>
+                    <li className="top_list_item"><Link className="link" to="/about">About</Link></li>
+                    <li className="top_list_item"><Link className="link" to="/contact">Contact</Link></li>
+                    <li className="top_list_item"><Link className="link" to="/write">Write</Link></li>
+                    <li className="top_list_item"><Link className="link" to="/">{user && 'Logout'} </Link></li>
                 </ul>
             </div>
             <div className="profile">
+                { user ? (<img src="/images/profile.png" className="profile_image" alt="Profile"/>
+                ):(
+                <ul className="top_list">
+                     <li className="top_list_item" style={{marginRight: '20px'}}><Link to="/login" className="link">Login</Link></li>
+                     <li className="top_list_item"><Link to="/register" className="link">Register</Link></li>
+                </ul>)
+            }
                 
-                <img src="/images/profile.png" className="profile_image" alt="Profile"/>
-                <i class="search_icon fa fa-search"></i>
             </div>
         </div>
     )

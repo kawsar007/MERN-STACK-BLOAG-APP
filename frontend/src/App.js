@@ -1,18 +1,43 @@
+import {
+  BrowserRouter as Router, Route, Switch
+} from "react-router-dom";
 import './App.css';
-import Register from './components/register/Register';
-import Topbar from './components/topbar/Topbar';
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import Settings from "./components/settings/Settings";
+import Topbar from "./components/topbar/Topbar";
+import WritePost from "./components/writePost/WritePost";
+import Home from './Layout/home/Home';
+import Single from "./Layout/posts/single/Single";
+
 
 function App() {
+  const user = false;
   return (
-    <div className="App">
-      <Topbar/>
-      {/* <Home/> */}
-      {/* <Single/> */}
-      {/* <WritePost/> */}
-      {/* <Settings/> */}
-      {/* <Login/> */}
-      <Register/>
-    </div>
+    <Router>
+      <Topbar />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/register">
+          { user ? <Home/> : <Register />}
+        </Route>
+        <Route path="/login">
+        { user ? <Home/> : <Login />}
+        </Route>
+        <Route path="/write">
+        { user ? <WritePost/> : <Register />}
+        </Route>
+        <Route path="/settings">
+        { user ? <Settings/> : <Register />}
+          
+        </Route>
+        <Route path="/post/:postId">
+          <Single/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

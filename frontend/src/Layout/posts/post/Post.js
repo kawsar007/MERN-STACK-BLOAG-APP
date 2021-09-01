@@ -4,7 +4,7 @@ import './Post.css';
 function Post() {
     return (
         <div className="single_post">
-           <img src="/images/blog1.jpg" className="postImg" alt="Blog"/>
+           <img src="/images/blog2.jpg" className="postImg" alt="Blog"/>
            <div className="postInfo">
                <div className="postCats">
                    <span className="postCat">Music</span>
