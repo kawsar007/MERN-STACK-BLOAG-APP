@@ -1,13 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import './SinglePost.css';
 
 export default function SinglePost() {
+    const [post, setPost] = useState({});
+    console.log(post);
+    const location = useLocation();
+    const path = location.pathname.split("/")[2];
+
+    useEffect(() => {
+        const getPost = async () => {
+            const res = await axios.get('/posts/' + path)
+            setPost(res.data)
+        }
+        getPost();
+    }, [path]);
+
     return (
         <div className="single-post">
             <div className="single-post-warpper">
-                <img src="/images/blog.jpg" alt="BlogImg" className="single-post-img"/>
+                {post.photo && <img src={post.photo} alt="BlogImg" className="single-post-img"/>}
+                
                 <div className="single-post-title">
-                    <h2 className="post-title">In publishing and graphic placeholder.
+                    <h2 className="post-title">{post.title}
                         <div className="single-post-edit">
                         <i className="single-post-icon fa fa-edit"></i>
                         <i className="single-post-icon fa fa-trash"></i>
@@ -16,11 +32,11 @@ export default function SinglePost() {
                 </div>
                 <div className="single-post-info">
                     <span className="single-post-author">
-                        Author: <b>Kawsar Ahamed</b>
+                        Author: <b>{post.username}</b>
                     </span>
-                    <span className="single-post-date">1 hour ago</span>
+                    <span className="single-post-date">{new Date(post.createdAt).toDateString()}</span>
                 </div>
-                <p className="single-post-desc">In publishing and graphic design, Lorem ipsum is a placeholder single-post-icon In publishing and graphic design, Lorem ipsum is a placeholder single-post-iconIn publishing and graphic design, Lorem ipsum is a placeholder single-post-iconIn publishing and graphic design, Lorem ipsum is a placeholder single-post-iconIn publishing and graphic design, Lorem ipsum is a placeholder single-post-iconIn publishing and graphic design, Lorem ipsum is a placeholder single-post-iconIn publishing and graphic design, Lorem ipsum is a placeholder single-post-icon</p>
+                <p className="single-post-desc">{post.desc}</p>
             </div>
         </div>
     )

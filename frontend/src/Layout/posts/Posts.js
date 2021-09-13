@@ -1,23 +1,14 @@
 import React from 'react';
 import Post from './post/Post';
-//import SinglePost from '../../components/single-post/SinglePost';
 import './Posts.css';
 
-function Posts() {
+function Posts({posts}) {
     return (
         <div className="posts">
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-           {/* <SinglePost/> 
-           <SinglePost/> 
-           <SinglePost/> 
-           <SinglePost/> 
-           <SinglePost/> 
-           <SinglePost/>  */}
+            {posts.map(post => (
+               <Post post={post} /> 
+            ))}
+            
         </div>
     )
 }
