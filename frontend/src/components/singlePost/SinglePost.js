@@ -1,15 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { Context } from "./../../context/Context";
 import "./SinglePost.css";
 
 export default function SinglePost() {
   const [post, setPost] = useState({});
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-
   const PF = "http://localhost:5000/images/";
+  const { user } = useContext(Context);
 
   useEffect(() => {
     const getPost = async () => {
@@ -18,6 +19,16 @@ export default function SinglePost() {
     };
     getPost();
   }, [path]);
+
+  // Delete Post
+  const deleteHandler = async () => {
+    try {
+      await axios.delete(`/posts/${post._id}`, {
+        data: { username: user.username },
+      });
+      window.location.replace("/");
+    } catch (err) {}
+  };
 
   return (
     <div className="single-post">
@@ -29,10 +40,15 @@ export default function SinglePost() {
         <div className="single-post-title">
           <h2 className="post-title">
             {post.title}
-            <div className="single-post-edit">
-              <i className="single-post-icon fa fa-edit"></i>
-              <i className="single-post-icon fa fa-trash"></i>
-            </div>
+            {post.username === user?.username && (
+              <div className="single-post-edit">
+                <i className="single-post-icon fa fa-edit"></i>
+                <i
+                  className="single-post-icon fa fa-trash"
+                  onClick={deleteHandler}
+                ></i>
+              </div>
+            )}
           </h2>
         </div>
         <div className="single-post-info">
