@@ -6,9 +6,10 @@ import "./SinglePost.css";
 
 export default function SinglePost() {
   const [post, setPost] = useState({});
-  console.log(post);
   const location = useLocation();
   const path = location.pathname.split("/")[2];
+
+  const PF = "http://localhost:5000/images/";
 
   useEffect(() => {
     const getPost = async () => {
@@ -22,7 +23,7 @@ export default function SinglePost() {
     <div className="single-post">
       <div className="single-post-warpper">
         {post.photo && (
-          <img src={post.photo} alt="BlogImg" className="single-post-img" />
+          <img src={PF + post.photo} alt="" className="single-post-img" />
         )}
 
         <div className="single-post-title">
