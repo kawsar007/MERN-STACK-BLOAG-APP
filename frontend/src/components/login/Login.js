@@ -34,7 +34,7 @@ export default function Login() {
         />
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           className="login-input"
           placeholder="Enter your password..."
           ref={passwordRef}
